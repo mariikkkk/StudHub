@@ -1,4 +1,4 @@
-package com.example.unigroup.ui.theme
+package com.example.unigroup.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -17,3 +17,7 @@ val StatusGreen = Color(0xFF4ADE80) // Статус "Идет сдача"
 val SurfaceVariant = Color(0xFFF3F4F6) // Фон для карточек и полей ввода
 
 val TextPrimary = Color(0xFF111827) // Стандартный черный для текста
+
+val titleGradient1 = Color(0xFF195CFB)
+
+val titleGradient2 = Color(0xFF4e3af6)

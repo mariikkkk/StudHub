@@ -1,4 +1,4 @@
-package com.example.unigroup
+package com.example.unigroup.presentation.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,11 +26,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-
+import com.example.unigroup.R
 
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = viewModel()){
+fun LoginScreen(viewModel: LoginViewModel = viewModel(), onLoginSuccess: () -> Unit){
 
     Column(
         modifier = Modifier
@@ -97,7 +97,7 @@ fun LoginScreen(viewModel: LoginViewModel = viewModel()){
         Spacer(modifier = Modifier.height(32.dp))
 
         Button(
-            onClick = {},
+            onClick = { onLoginSuccess() },
             modifier = Modifier
                 .fillMaxWidth()
             .height(56.dp)

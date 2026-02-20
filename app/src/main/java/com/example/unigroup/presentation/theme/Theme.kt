@@ -1,6 +1,5 @@
-package com.example.unigroup.ui.theme
+package com.example.unigroup.presentation.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -22,7 +21,7 @@ private val LightColorScheme = lightColorScheme(
     primary = UniBlue,              // основной цвет (кнопки, акценты)
     secondary = StatusGreen,        // вторичный цвет     //
     background = Color.White,       // общий фон
-    surface = Color.White,          // фон карточек
+    surface = SurfaceVariant,          // фон карточек
     onPrimary = Color.White,        // текст на основном цвете
     onBackground = TextPrimary      // текст на общем фоне
 
