@@ -9,3 +9,11 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
+
+val UniBlue = Color(0xFF3B82F6) // Кнопки Войти и Зарегистрироваться
+
+val StatusGreen = Color(0xFF4ADE80) // Статус "Идет сдача"
+
+val SurfaceVariant = Color(0xFFF3F4F6) // Фон для карточек и полей ввода
+
+val TextPrimary = Color(0xFF111827) // Стандартный черный для текста
