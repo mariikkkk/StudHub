@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.Navigation
 import com.example.unigroup.presentation.navigation.NavigationItem
+import com.example.unigroup.presentation.queues.QueuesTab
 import com.example.unigroup.presentation.theme.AppBrushes
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,7 +48,7 @@ fun HomeScreen(){
             TopAppBar(
                 title = {
                     Text(
-                    text = "UniGroup",
+                    text = "StudHub",
                     style = MaterialTheme.typography.headlineLarge.copy(
                     brush = AppBrushes.titleGradient)
                     )
@@ -121,12 +122,6 @@ fun HomeTab(){
     }
 }
 
-@Composable
-fun QueuesTab(){
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-        Text(text="Queues")
-    }
-}
 
 @Composable
 fun CalendarTab(){

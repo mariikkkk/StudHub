@@ -12,7 +12,7 @@ sealed class NavigationItem(val route: String, val icon: ImageVector? = null, va
     object Home    : NavigationItem("home_main", Icons.Default.Home, title = "Главная")
     object Queues  : NavigationItem("queues", Icons.Default.List, title = "Очереди")
     object Calendar: NavigationItem("calendar", Icons.Default.DateRange, title = "Календарь")
-    object Requests: NavigationItem("requests", Icons.Default.MailOutline, title = "Запросы")
+    object Requests: NavigationItem("requests", iconId = R.drawable.message, title = "Запросы")
     object Files   : NavigationItem("files", iconId = R.drawable.file, title = "Файлы")
 
 }

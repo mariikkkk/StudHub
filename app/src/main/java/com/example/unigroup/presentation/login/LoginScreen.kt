@@ -41,7 +41,7 @@ fun LoginScreen(viewModel: LoginViewModel = viewModel(), onLoginSuccess: () -> U
     )
     {
         Text(
-            text = "UniGroup",
+            text = "StudHub",
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.primary
         )
