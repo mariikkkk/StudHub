@@ -146,7 +146,7 @@ fun FilesTab(){
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    StudHubTheme {
+    StudHubTheme() {
         HomeScreen()
     }
 }
