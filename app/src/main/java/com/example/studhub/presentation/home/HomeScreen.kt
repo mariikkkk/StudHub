@@ -1,4 +1,4 @@
-package com.example.unigroup.presentation.home
+package com.example.studhub.presentation.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,15 +22,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.NativeCanvas
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.Navigation
-import com.example.unigroup.presentation.navigation.NavigationItem
-import com.example.unigroup.presentation.queues.QueuesTab
-import com.example.unigroup.presentation.theme.AppBrushes
+import com.example.studhub.presentation.navigation.NavigationItem
+import com.example.studhub.presentation.queues.QueuesTab
+import com.example.studhub.presentation.theme.AppBrushes
+import com.example.studhub.presentation.theme.UniGroupTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,7 +53,7 @@ fun HomeScreen(){
                     )
                 },
                 actions = {
-                    IconButton(onClick = { TODO() })
+                    IconButton(onClick = {  })
                     {
                         Surface(
                             shape = CircleShape,
@@ -62,7 +61,7 @@ fun HomeScreen(){
                             modifier = Modifier.size(40.dp)
                         ){
                             Box(
-                                contentAlignment = Alignment.Center
+                                contentAlignment = Alignment.Center,
                             ) {
                                 Text(
                                     text = "ЦМ",
@@ -141,5 +140,13 @@ fun RequestsTab(){
 fun FilesTab(){
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
         Text(text="Files")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    UniGroupTheme {
+        HomeScreen()
     }
 }

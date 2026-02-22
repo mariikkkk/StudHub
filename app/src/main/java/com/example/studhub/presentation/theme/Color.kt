@@ -1,4 +1,4 @@
-package com.example.unigroup.presentation.theme
+package com.example.studhub.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -21,3 +21,11 @@ val TextPrimary = Color(0xFF111827) // Стандартный черный дл�
 val titleGradient1 = Color(0xFF195CFB)
 
 val titleGradient2 = Color(0xFF4e3af6)
+
+val statusGreenSurface = Color(0xFFdbfce7)  // Цвет фона для статуса "Открыто"
+
+val statusGreenText = Color(0xFF007134)     // Цвет текста для статуса "Открыто"
+
+val statusRedSurface = Color(0xFFFF9999)     // Цвет фона для статуса "Закрыто"
+
+val statusRedText = Color(0xFF990000)          // Цвет текста для статуса "Закрыто"

@@ -1,9 +1,9 @@
-package com.example.unigroup.presentation.queues
+package com.example.studhub.presentation.queues
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
-import com.example.unigroup.domain.models.QueueItem
-import com.example.unigroup.domain.models.QueueSlot
+import com.example.studhub.domain.models.QueueItem
+import com.example.studhub.domain.models.QueueSlot
 
 class QueuesViewModel: ViewModel() {
 
@@ -14,7 +14,7 @@ class QueuesViewModel: ViewModel() {
             "Сегодня дедлайн!",
             26,
             5,
-            "Идет сдача"
+            "Открыто"
         ),
         QueueItem(
             2,
@@ -22,7 +22,7 @@ class QueuesViewModel: ViewModel() {
             "Перед сдачей прикрепите",
             26,
             2,
-            "Идет сдача"
+            "Закрыто"
         ),
         QueueItem(
             3,

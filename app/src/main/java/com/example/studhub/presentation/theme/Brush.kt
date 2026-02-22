@@ -1,6 +1,5 @@
-package com.example.unigroup.presentation.theme
+package com.example.studhub.presentation.theme
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Brush
 

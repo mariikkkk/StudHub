@@ -1,4 +1,4 @@
-package com.example.unigroup.domain.models
+package com.example.studhub.domain.models
 
 data class QueueItem(
     val id: Int,
@@ -6,6 +6,6 @@ data class QueueItem(
     val subtitle: String,           // Доп инфа
     val participantsCount: Int,     // Количество участников
     val myPlace: Int? = null,       // Если null - значит вас нет в очереди и можно записаться
-    val status: String? = null      // Статус очереди
+    val status: String              // Статус очереди
 
 )

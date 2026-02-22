@@ -1,4 +1,4 @@
-package com.example.unigroup.domain.models
+package com.example.studhub.domain.models
 
 data class QueueSlot(
     val id: Int, // номер ячейки

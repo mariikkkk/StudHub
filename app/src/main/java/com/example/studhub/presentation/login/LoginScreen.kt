@@ -1,4 +1,4 @@
-package com.example.unigroup.presentation.login
+package com.example.studhub.presentation.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,7 +26,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.unigroup.R
+import com.example.studhub.R
 
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.unigroup.presentation.queues
+package com.example.studhub.presentation.queues
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -27,6 +28,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,17 +38,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.unigroup.R
-import com.example.unigroup.domain.models.QueueItem
-import com.example.unigroup.domain.models.QueueSlot
-import com.example.unigroup.presentation.theme.UniGroupTheme
+import com.example.studhub.R
+import com.example.studhub.domain.models.QueueItem
+import com.example.studhub.domain.models.QueueSlot
+import com.example.studhub.presentation.theme.UniGroupTheme
 
 @Composable
 fun QueuesTab(viewModel: QueuesViewModel = viewModel()){
@@ -81,7 +82,9 @@ fun QueueSlotItem(slot: QueueSlot, onClick: () -> Unit){
         else -> MaterialTheme.colorScheme.surface
     }
     Card(
-        modifier = Modifier.fillMaxWidth().clickable { onClick() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() },
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
     ) {
@@ -104,7 +107,9 @@ fun QueueSlotItem(slot: QueueSlot, onClick: () -> Unit){
 
 @Composable
 fun QueuesListScreen(queues: List<QueueItem>, onQueueClick: (Int) -> Unit) {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically){
             Icon(
                 Icons.Default.List,
@@ -138,26 +143,44 @@ fun QueuesListScreen(queues: List<QueueItem>, onQueueClick: (Int) -> Unit) {
         LazyColumn {
             items(queues) { queue ->
                 Card(
-                    modifier = Modifier.fillMaxWidth().clickable { onQueueClick(queue.id) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onQueueClick(queue.id) },
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
 
                 ) {
                     Column() {
-                        Column() {
-                            Text(
-                                queue.title,
-                                modifier = Modifier.padding(top = 16.dp, start = 16.dp),
-                                style = MaterialTheme.typography.headlineSmall,
-                                color = Color.Black,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                queue.subtitle,
-                                modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
-                            )
+                        Row(){
+                            Column() {
+                                Text(
+                                    queue.title,
+                                    modifier = Modifier.padding(top = 16.dp, start = 16.dp),
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Text(
+                                    queue.subtitle,
+                                    modifier = Modifier.padding(start = 16.dp, bottom = 16.dp)
+                                )
+
+                            }
+                            Spacer(modifier = Modifier.weight(1f))
+                            val (bgColor, textColor) = queue.getStatusTheme()
+                            Surface(
+                                color = bgColor,
+                                shape = RoundedCornerShape(topEnd = 0.dp, bottomEnd = 0.dp, topStart = 0.dp, bottomStart = 16.dp)
+                            ){
+                                Text(text=queue.status,
+                                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 4.dp, bottom = 4.dp ),
+                                    fontSize = 12.sp,
+                                    color = textColor,
+                                    fontWeight = FontWeight.Bold)
+                            }
 
                         }
+
                         HorizontalDivider(
                             modifier = Modifier.padding(horizontal = 16.dp),
                             thickness = 1.dp,
@@ -191,7 +214,9 @@ fun QueuesListScreen(queues: List<QueueItem>, onQueueClick: (Int) -> Unit) {
 fun QueueDetailsScreen(viewModel: QueuesViewModel, onBackClick: () -> Unit, queueId: Int) {
     val selectedQueue = viewModel.queueList.find { it.id == queueId }
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ){
