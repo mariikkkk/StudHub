@@ -1,14 +1,14 @@
-package com.example.unigroup.presentation.navigation
+package com.example.studhub.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.unigroup.presentation.home.HomeScreen
-import com.example.unigroup.presentation.login.LoginScreen
+import com.example.studhub.presentation.home.HomeScreen
+import com.example.studhub.presentation.login.LoginScreen
 
 @Composable
-fun UniGroupApp(){
+fun StudHubApp(){
     val navController = rememberNavController()             // Создание контроллера
 
     NavHost(

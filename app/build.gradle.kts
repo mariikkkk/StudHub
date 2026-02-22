@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.unigroup"
+    namespace = "com.example.studhub"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.unigroup"
+        applicationId = "com.example.studhub"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

@@ -1,4 +1,4 @@
-package com.example.unigroup
+package com.example.studhub
 
 import org.junit.Test
 

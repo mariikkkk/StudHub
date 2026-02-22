@@ -1,4 +1,4 @@
-package com.example.unigroup.presentation.login
+package com.example.studhub.presentation.login
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
