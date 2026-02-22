@@ -7,7 +7,7 @@ import com.example.studhub.domain.models.QueueSlot
 
 class QueuesViewModel: ViewModel() {
 
-    val queueList = listOf(
+    private val _queueList = mutableStateListOf(
         QueueItem(
             1,
             "ТРПП 2",
@@ -41,6 +41,8 @@ class QueuesViewModel: ViewModel() {
             "Открыто"
         )
     )
+
+    val queueList: List<QueueItem> = _queueList
     private val _slots =
         mutableStateListOf<QueueSlot>().apply { // внутренняя переменная, которую никто не может поменять
             repeat(26) { i ->
@@ -54,14 +56,20 @@ class QueuesViewModel: ViewModel() {
         val index = _slots.indexOfFirst { it.id == slotId }    // пробегается по списку и ищет id
         if (index != -1) {                                       // если нашли айди
             val currentSlot = _slots[index]                     // сохраняем состояние
-            _slots[index] = when {
+            when {
                 // Если это наш слот, то освобождаем его
-                currentSlot.isMySlot -> currentSlot.copy(studentName = null, isMySlot = false)
+                currentSlot.isMySlot -> {
+                    _slots[index] = currentSlot.copy(studentName = null, isMySlot = false)
+                    updateQueueItem(queueId, null)
+                }
                 // Если место пустое, то занимаем его
-                currentSlot.studentName == null -> currentSlot.copy(
-                    studentName = "Цой Марат",
-                    isMySlot = true
-                )
+                currentSlot.studentName == null -> {
+                    _slots[index] = currentSlot.copy(
+                        studentName = "Цой Марат",
+                        isMySlot = true
+                    )
+                    updateQueueItem(queueId, slotId)
+                }
                 // Если занято, то ничего не происходит
                 else -> currentSlot
                 // Используем copy, чтобы заменить указанные поля на новые и положить новый объект в массив _slots[index]
@@ -69,13 +77,19 @@ class QueuesViewModel: ViewModel() {
         }
     }
 
-
+    fun updateQueueItem(queueId: Int, newPlace: Int?) {
+        val queueIndex = queueList.indexOfFirst { it.id == queueId }
+        if (queueIndex != -1) {
+            val currentQueue = _queueList[queueIndex]
+            _queueList[queueIndex] = currentQueue.copy(myPlace = newPlace)
+        }
+    }
 
     fun loadSlotsForQueue(queueId: Int) {
         val newSlots = when (queueId) {
             1 -> {
                 (1..26).map {
-                    QueueSlot(it, if (it == 5) "Куликов" else null, isMySlot = it == 5)
+                    QueueSlot(it, if (it == 5) "Куликов" else null, isMySlot = false)
 
                 }
             }
