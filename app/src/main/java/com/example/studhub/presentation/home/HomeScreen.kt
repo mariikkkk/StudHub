@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.example.studhub.presentation.navigation.NavigationItem
 import com.example.studhub.presentation.queues.QueuesTab
 import com.example.studhub.presentation.theme.AppBrushes
-import com.example.studhub.presentation.theme.UniGroupTheme
+import com.example.studhub.presentation.theme.StudHubTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -146,7 +146,7 @@ fun FilesTab(){
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    UniGroupTheme {
+    StudHubTheme() {
         HomeScreen()
     }
 }
