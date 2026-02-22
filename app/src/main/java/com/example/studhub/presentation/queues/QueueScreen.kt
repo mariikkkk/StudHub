@@ -1,5 +1,6 @@
 package com.example.studhub.presentation.queues
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -38,6 +39,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,7 +49,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.studhub.R
 import com.example.studhub.domain.models.QueueItem
 import com.example.studhub.domain.models.QueueSlot
-import com.example.studhub.presentation.theme.UniGroupTheme
+import com.example.studhub.presentation.theme.StudHubTheme
 
 @Composable
 fun QueuesTab(viewModel: QueuesViewModel = viewModel()){
@@ -107,6 +109,7 @@ fun QueueSlotItem(slot: QueueSlot, onClick: () -> Unit){
 
 @Composable
 fun QueuesListScreen(queues: List<QueueItem>, onQueueClick: (Int) -> Unit) {
+    val context = LocalContext.current
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)) {
@@ -145,7 +148,11 @@ fun QueuesListScreen(queues: List<QueueItem>, onQueueClick: (Int) -> Unit) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { onQueueClick(queue.id) },
+                        .clickable {
+                            if (queue.status == "Закрыто"){
+                                Toast.makeText(context, "Очередь закрыта", Toast.LENGTH_SHORT).show()
+                            }
+                            onQueueClick(queue.id) },
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
 
@@ -214,6 +221,10 @@ fun QueuesListScreen(queues: List<QueueItem>, onQueueClick: (Int) -> Unit) {
 fun QueueDetailsScreen(viewModel: QueuesViewModel, onBackClick: () -> Unit, queueId: Int) {
     val selectedQueue = viewModel.queueList.find { it.id == queueId }
 
+    val context = LocalContext.current
+    val isClosed = selectedQueue?.status == "Закрыто"
+
+
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(16.dp)) {
@@ -230,7 +241,22 @@ fun QueueDetailsScreen(viewModel: QueuesViewModel, onBackClick: () -> Unit, queu
 
         LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(viewModel.slots) { slot ->
-                QueueSlotItem(slot = slot, onClick = { viewModel.toggleSlot(slot.id, queueId) })
+                QueueSlotItem(slot = slot, onClick = {
+                    val alreadyBorrowed = viewModel.slots.any { it.isMySlot}
+                    if (isClosed){
+                        Toast.makeText(context, "Очередь закрыта", Toast.LENGTH_SHORT).show()
+                    }
+                    else if (!slot.isMySlot && slot.studentName != null){
+                        Toast.makeText(context, "Это место уже занято другим студентом", Toast.LENGTH_SHORT).show()
+                    }
+                    else if(alreadyBorrowed && !slot.isMySlot){
+                        Toast.makeText(context, "Вы уже записаны на ${selectedQueue?.myPlace} месте", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        viewModel.toggleSlot(slot.id, queueId)
+                    }
+
+                })
             }
         }
     }
@@ -239,7 +265,7 @@ fun QueueDetailsScreen(viewModel: QueuesViewModel, onBackClick: () -> Unit, queu
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    UniGroupTheme {
+    StudHubTheme {
         QueuesListScreen(
             listOf(
                 QueueItem(1, "Queue 1", "Subtitle 1", 10, null, "Status 1"),
